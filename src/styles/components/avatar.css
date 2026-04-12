@@ -1,0 +1,68 @@
+/* DiceBear avatar wrapper with size variants. */
+
+.avatar {
+  display: block;
+  border-radius: 50%;
+  background: var(--bg2);
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+
+  &.avatar-sm {
+    width: 48px;
+    height: 48px;
+  }
+  &.avatar-md {
+    width: 56px;
+    height: 56px;
+  }
+  &.avatar-lg {
+    width: 64px;
+    height: 64px;
+  }
+  &.avatar-xl {
+    width: 112px;
+    height: 112px;
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+.avatar-style-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.avatar-style-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+  transition: var(--transition);
+
+  &.selected {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+  }
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+.avatar-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.avatar-picker-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}

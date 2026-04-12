@@ -1,0 +1,28 @@
+#============================================================
+# Lexica Git Ignore File
+#============================================================
+
+#-- Dependencies --#
+node_modules/ 
+
+#-- Environment Files --#
+.env
+.env.*
+!.env.development
+
+# -- Log Files -- #
+logs
+*.log
+
+#-- Build Output --#
+dist/
+
+#-- System Files --#
+.DS_Store
+
+#-- Cache Files --#
+.cache/
+.npm-cache/
+
+#-- Local Agent Notes --#
+AGENTS.md

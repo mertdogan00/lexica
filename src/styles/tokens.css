@@ -1,0 +1,102 @@
+/* Design tokens for Lexica.
+   Palettes are expressed in oklch so light and dark variants feel
+   perceptually balanced and so color-mix() calls downstream in the
+   stylesheet produce predictable results. Hex fallbacks are kept for
+   the very few places that need to match the prototype byte for byte
+   (theme-color meta tag, legacy image backgrounds). */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap');
+
+:root {
+  color-scheme: light dark;
+
+  /* Surfaces */
+  --bg: oklch(98% 0.005 95);
+  --bg2: oklch(95% 0.008 95);
+  --bg3: oklch(90% 0.01 95);
+  --surface: oklch(100% 0 0);
+  --surface-hover: oklch(97% 0.006 95);
+
+  /* Text */
+  --text: oklch(18% 0.01 270);
+  --text2: oklch(45% 0.01 270);
+  --text3: oklch(65% 0.008 270);
+
+  /* Borders */
+  --border: oklch(92% 0.008 95);
+  --border2: oklch(86% 0.01 95);
+
+  /* Brand + status */
+  --accent: oklch(50% 0.11 155);
+  --accent-hi: oklch(65% 0.15 155);
+  --accent-light: oklch(92% 0.08 155);
+  --accent-bg: oklch(97% 0.035 155);
+
+  --danger: oklch(60% 0.18 25);
+  --danger-light: oklch(94% 0.04 25);
+
+  --warning: oklch(75% 0.14 70);
+  --warning-light: oklch(95% 0.05 70);
+
+  --success: oklch(65% 0.14 155);
+  --success-light: oklch(92% 0.08 155);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.04);
+  --shadow: 0 2px 8px oklch(0% 0 0 / 0.06);
+  --shadow-lg: 0 8px 30px oklch(0% 0 0 / 0.08);
+  --shadow-xl: 0 20px 60px oklch(0% 0 0 / 0.12);
+
+  /* Shape */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+
+  /* Layout */
+  --nav-height: 72px;
+  --header-height: 56px;
+
+  /* Motion */
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Gamification */
+  --xp-color: oklch(75% 0.17 80);
+  --streak-color: oklch(65% 0.19 40);
+  --level-color: oklch(65% 0.15 230);
+}
+
+body.dark,
+.dark {
+  --bg: oklch(15% 0.008 95);
+  --bg2: oklch(19% 0.01 95);
+  --bg3: oklch(24% 0.012 95);
+  --surface: oklch(21% 0.01 95);
+  --surface-hover: oklch(25% 0.012 95);
+
+  --text: oklch(95% 0.005 95);
+  --text2: oklch(70% 0.01 95);
+  --text3: oklch(55% 0.01 95);
+
+  --border: oklch(27% 0.01 95);
+  --border2: oklch(34% 0.012 95);
+
+  --accent: oklch(70% 0.16 155);
+  --accent-hi: oklch(78% 0.17 155);
+  --accent-light: oklch(30% 0.08 155);
+  --accent-bg: oklch(22% 0.05 155);
+
+  --danger: oklch(72% 0.2 25);
+  --danger-light: oklch(28% 0.07 25);
+
+  --warning: oklch(80% 0.16 70);
+  --warning-light: oklch(30% 0.07 70);
+
+  --success: oklch(72% 0.16 155);
+  --success-light: oklch(28% 0.08 155);
+
+  --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.2);
+  --shadow: 0 2px 8px oklch(0% 0 0 / 0.3);
+  --shadow-lg: 0 8px 30px oklch(0% 0 0 / 0.4);
+  --shadow-xl: 0 20px 60px oklch(0% 0 0 / 0.5);
+}

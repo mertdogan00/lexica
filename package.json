@@ -1,0 +1,69 @@
+{
+  "name": "lexica",
+  "version": "1.0.0",
+  "description": "Open-source mobile-first vocabulary trainer built with spaced repetition, gamification, and offline-first persistence.",
+  "author": "Mert Dogan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mertdogan00/lexica.git"
+  },
+  "homepage": "https://github.com/mertdogan00/lexica#readme",
+  "bugs": {
+    "url": "https://github.com/mertdogan00/lexica/issues"
+  },
+  "keywords": [
+    "spaced-repetition",
+    "vocabulary",
+    "language-learning",
+    "react",
+    "typescript",
+    "vite",
+    "offline-first",
+    "gamification"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src",
+    "typecheck": "tsc -b --noEmit",
+    "build": "./scripts/build.sh",
+    "build:raw": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@dicebear/collection": "^9.2.2",
+    "@dicebear/core": "^9.2.2",
+    "canvas-confetti": "^1.9.3",
+    "lucide-react": "^0.469.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@eslint/js": "^9.39.4",
+    "@rolldown/plugin-babel": "^0.2.1",
+    "@types/babel__core": "^7.20.5",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^24.12.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.4.0",
+    "javascript-obfuscator": "^5.4.1",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.57.0",
+    "vite": "^8.0.1"
+  }
+}

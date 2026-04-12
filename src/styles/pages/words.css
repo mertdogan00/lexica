@@ -1,0 +1,254 @@
+/* Words page: search, filter chips, word cards, and empty state. */
+
+.search-bar {
+  position: relative;
+  margin-bottom: 16px;
+
+  & svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    pointer-events: none;
+  }
+
+  & input {
+    width: 100%;
+    height: 46px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0 16px 0 42px;
+    font-size: 15px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: var(--transition);
+    font-family: inherit;
+
+    &:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 25%, transparent);
+    }
+  }
+}
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.filter-chip {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text2);
+  font-family: inherit;
+
+  &.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+}
+
+.word-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.word-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  color: var(--text);
+  font-family: inherit;
+
+  &:hover {
+    background: var(--surface-hover);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.word-level {
+  width: 6px;
+  height: 40px;
+  border-radius: 3px;
+  flex-shrink: 0;
+
+  &.l0 {
+    background: var(--text3);
+  }
+  &.l1 {
+    background: var(--danger);
+  }
+  &.l2 {
+    background: var(--warning);
+  }
+  &.l3 {
+    background: oklch(80% 0.14 85);
+  }
+  &.l4 {
+    background: oklch(78% 0.16 140);
+  }
+  &.l5,
+  &.l6,
+  &.l7 {
+    background: var(--success);
+  }
+}
+
+.word-main {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.word-en {
+  font-weight: 600;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.word-tr {
+  font-size: 14px;
+  color: var(--text2);
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.word-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.word-date {
+  font-size: 11px;
+  color: var(--text3);
+}
+
+.word-rep {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 4px;
+
+  &.low {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+  &.mid {
+    background: var(--warning-light);
+    color: var(--warning);
+  }
+  &.high {
+    background: var(--success-light);
+    color: var(--success);
+  }
+}
+
+/* Word detail modal. */
+.word-detail-header {
+  text-align: center;
+  padding: 12px 0 20px;
+}
+
+.word-detail-en {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  margin-bottom: 4px;
+  text-wrap: balance;
+}
+
+.word-detail-tr {
+  font-size: 18px;
+  color: var(--text2);
+}
+
+.word-detail-section {
+  margin-bottom: 16px;
+}
+
+.word-detail-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text3);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.word-detail-value {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.word-detail-italic {
+  font-style: italic;
+}
+
+.word-detail-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+
+  & > .btn {
+    flex: 1;
+  }
+}
+
+/* Empty state for the word list. */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.empty-icon {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.empty-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.empty-desc {
+  color: var(--text2);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}

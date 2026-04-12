@@ -1,0 +1,238 @@
+/* Review page: progress bar, flashcard, four answer buttons and
+   the completion summary. */
+
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.review-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--bg3);
+  border-radius: 2px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.review-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.review-counter {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.flashcard {
+  width: 100%;
+  max-width: 380px;
+  min-height: 260px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  user-select: none;
+  font-family: inherit;
+  color: var(--text);
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.flashcard-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text3);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.flashcard-word {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+
+.flashcard-answer {
+  color: var(--accent);
+}
+
+.flashcard-divider {
+  width: 100%;
+  border-top: 1px solid var(--border);
+  margin: 16px 0;
+}
+
+.flashcard-hint {
+  font-size: 13px;
+  color: var(--text3);
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.flashcard-example {
+  font-size: 14px;
+  color: var(--text2);
+  font-style: italic;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.flashcard-notes {
+  font-size: 13px;
+  color: var(--text3);
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--bg2);
+  border-radius: 8px;
+}
+
+.review-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 380px;
+  margin-top: 20px;
+}
+
+.review-btn {
+  padding: 14px 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  text-align: center;
+
+  &:active {
+    transform: scale(0.93);
+  }
+  &.again {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+  &.hard {
+    background: var(--warning-light);
+    color: var(--warning);
+  }
+  &.good {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  &.easy {
+    background: var(--success-light);
+    color: var(--success);
+  }
+
+  & span {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    margin-top: 2px;
+    opacity: 0.8;
+  }
+}
+
+.review-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.review-empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.review-empty-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.review-empty-desc {
+  color: var(--text2);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.review-empty-cta {
+  margin-top: 20px;
+}
+
+.review-complete {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.review-complete-icon {
+  font-size: 72px;
+  margin-bottom: 20px;
+}
+
+.review-complete-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.review-complete-desc {
+  color: var(--text2);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.review-complete-stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.rc-stat {
+  text-align: center;
+}
+
+.rc-stat-num {
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+
+  &.success {
+    color: var(--success);
+  }
+  &.danger {
+    color: var(--danger);
+  }
+}
+
+.rc-stat-label {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 2px;
+}

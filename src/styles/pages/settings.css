@@ -1,0 +1,191 @@
+/* Settings page: grouped rows with inline icons, toggles, and the
+   profile row that carries an avatar + name + quick action chips. */
+
+.settings-group {
+  margin-bottom: 24px;
+}
+
+.settings-group-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text3);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+
+  &:hover {
+    background: var(--surface-hover);
+  }
+
+  &:first-child {
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  &:last-child {
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+  &:only-child {
+    border-radius: var(--radius-sm);
+  }
+
+  & + .settings-item {
+    border-top: none;
+  }
+
+  &.settings-item-danger .settings-item-label {
+    color: var(--danger);
+  }
+}
+
+.settings-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &.green {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  &.yellow {
+    background: var(--warning-light);
+    color: var(--warning);
+  }
+  &.red {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+  &.success {
+    background: var(--success-light);
+    color: var(--success);
+  }
+  &.neutral {
+    background: var(--bg2);
+    color: var(--text2);
+  }
+}
+
+.settings-item-label {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.settings-item-value {
+  font-size: 14px;
+  color: var(--text2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Profile row — wider, with actions on the right. */
+.settings-item-profile {
+  flex-wrap: wrap;
+  row-gap: 12px;
+  cursor: default;
+
+  & .settings-item-left {
+    flex: 1;
+  }
+}
+
+.settings-item-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--text2);
+  font-family: inherit;
+  transition: var(--transition);
+
+  &:hover {
+    background: var(--surface-hover);
+    color: var(--text);
+    border-color: var(--border2);
+  }
+}
+
+/* Toggle button used on the animations row. */
+.toggle {
+  width: 50px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  background: var(--bg3);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+  flex-shrink: 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #fff;
+    top: 3px;
+    left: 3px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &.on {
+    background: var(--accent);
+
+    &::after {
+      left: 23px;
+    }
+  }
+}
+
+.settings-option-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settings-option-save {
+  margin-top: 6px;
+}
+
+.name-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

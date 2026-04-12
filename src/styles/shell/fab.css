@@ -1,0 +1,27 @@
+.fab {
+  position: fixed;
+  bottom: calc(var(--nav-height) + 20px);
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--bounce);
+  z-index: 50;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+    background: var(--accent-hi);
+  }
+  &:active {
+    transform: scale(0.93);
+  }
+}

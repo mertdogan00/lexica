@@ -1,0 +1,194 @@
+/* Onboarding overlay: 5 steps rendered inside a full-viewport sheet
+   that sits above the app shell while settings.onboarded is false. */
+
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  text-align: center;
+  overflow-y: auto;
+}
+
+.ob-inner {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-top: 40px;
+}
+
+.ob-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--bg2);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+  transition: var(--transition);
+
+  &:hover {
+    background: var(--bg3);
+    color: var(--text);
+  }
+}
+
+.ob-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+.ob-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+}
+
+.ob-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.ob-desc {
+  color: var(--text2);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  text-wrap: balance;
+}
+
+.ob-options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.ob-option {
+  padding: 16px 18px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+
+  &.selected {
+    border-color: var(--accent);
+    background: var(--accent-bg);
+  }
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+.ob-option-desc {
+  font-size: 13px;
+  color: var(--text2);
+  font-weight: 400;
+}
+
+.ob-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.ob-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg3);
+  transition: var(--transition);
+
+  &.active {
+    background: var(--accent);
+    width: 24px;
+    border-radius: 4px;
+  }
+}
+
+.ob-profile-preview {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-group {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.form-group-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  height: 46px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0 14px;
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: var(--transition);
+  font-family: inherit;
+
+  &:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 25%, transparent);
+  }
+}
+
+.form-textarea {
+  height: 80px;
+  padding: 12px 14px;
+  resize: vertical;
+}

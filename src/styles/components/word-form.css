@@ -1,0 +1,9 @@
+/* Word add/edit form used inside the global modal host. Layout is a
+   straight vertical stack; fields and labels are rendered by pages/onboarding.css
+   form primitives so we only need to control the outer spacing here. */
+
+.word-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

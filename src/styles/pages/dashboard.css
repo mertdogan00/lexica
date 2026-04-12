@@ -1,0 +1,303 @@
+/* Dashboard page: greeting, gamification strip, goal card, stats and
+   quick actions. Layout order matches the page component top-to-bottom
+   so this file reads like an annotated screenshot. */
+
+.page {
+  padding: 16px 16px 24px;
+  min-height: calc(100dvh - var(--header-height) - var(--nav-height));
+  animation: fadeIn 0.25s ease;
+}
+
+.dash-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.dash-greeting {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  margin-bottom: 4px;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.dash-sub {
+  color: var(--text2);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Game strip: level, streak, XP in a row of pill chips. */
+.game-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.game-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, currentColor 18%, transparent),
+      transparent 70%
+    );
+    z-index: -1;
+  }
+
+  & svg {
+    color: currentColor;
+    flex-shrink: 0;
+  }
+
+  &.level {
+    color: var(--level-color);
+  }
+  &.streak {
+    color: var(--streak-color);
+  }
+  &.xp {
+    color: var(--xp-color);
+  }
+}
+
+.game-chip-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.game-chip-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text2);
+  font-weight: 600;
+}
+
+.game-chip-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+/* XP bar below the strip, animated with @property for a smooth
+   gradient sweep on progress changes. */
+@property --xp-sweep {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.xp-bar-wrap {
+  margin-bottom: 18px;
+}
+
+.xp-bar {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--bg3);
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px oklch(0% 0 0 / 0.08);
+}
+
+.xp-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--xp-color), var(--accent-hi));
+  border-radius: 6px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: progress 0.8s ease;
+}
+
+.xp-bar-meta {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text3);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Goal card. */
+.goal-card {
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-light);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.goal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.goal-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.goal-count {
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.goal-bar {
+  height: 8px;
+  background: color-mix(in oklch, var(--accent-light) 60%, transparent);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.goal-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: progress 0.8s ease;
+}
+
+/* Stat grid. */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+
+  &.danger {
+    color: var(--danger);
+  }
+  &.warning {
+    color: var(--warning);
+  }
+  &.success {
+    color: var(--success);
+  }
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Section titles between groups of cards. */
+.section-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 20px 0 12px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+/* Quick action cards. */
+.action-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: left;
+  color: var(--text);
+  font-family: inherit;
+
+  &:hover {
+    background: var(--surface-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.action-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &.green {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  &.red {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+  &.yellow {
+    background: var(--warning-light);
+    color: var(--warning);
+  }
+}
+
+.action-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.action-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.action-desc {
+  font-size: 13px;
+  color: var(--text2);
+  margin-top: 2px;
+}
+
+.action-arrow {
+  color: var(--text3);
+  flex-shrink: 0;
+}

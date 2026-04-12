@@ -1,0 +1,102 @@
+/* Reset + base typography.
+   Scoped to document-wide concerns; component rules live in their own
+   files. The .no-anim class is toggled by SettingsContext when the
+   user disables animations. */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  font-family: 'DM Sans', -apple-system, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  padding-bottom: var(--nav-height);
+}
+
+#root {
+  display: contents;
+}
+
+.no-anim *,
+.no-anim *::before,
+.no-anim *::after {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg3);
+  border-radius: 2px;
+}
+
+/* Shared keyframes that several feature stylesheets reuse. */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@keyframes progress {
+  from {
+    width: 0;
+  }
+}
+
+@media (min-width: 600px) {
+  .page {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}

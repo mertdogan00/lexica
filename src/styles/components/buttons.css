@@ -1,0 +1,60 @@
+/* Shared button primitives: .btn, primary/secondary/danger variants,
+   block, large. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  white-space: nowrap;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &.btn-primary {
+    background: var(--accent);
+    color: #fff;
+
+    &:hover {
+      filter: brightness(1.08);
+    }
+  }
+
+  &.btn-secondary {
+    background: var(--bg2);
+    color: var(--text);
+
+    &:hover {
+      background: var(--bg3);
+    }
+  }
+
+  &.btn-danger {
+    background: var(--danger-light);
+    color: var(--danger);
+
+    &:hover {
+      filter: brightness(1.06);
+    }
+  }
+
+  &.btn-block {
+    width: 100%;
+  }
+
+  &.btn-lg {
+    height: 54px;
+    font-size: 16px;
+    border-radius: var(--radius);
+  }
+}
