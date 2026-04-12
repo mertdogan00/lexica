@@ -5,23 +5,14 @@ import {
   Languages,
   Palette,
   RefreshCw,
-  Shuffle,
   Sparkles,
   Target,
   Trash2,
   Upload,
   User,
 } from 'lucide-react';
-import type { ReactNode } from 'react';
 import { useRef } from 'react';
-import type {
-  AvatarStyle,
-  Language,
-  LearningMode,
-  SrsPresetId,
-  Theme,
-} from '../../../core/domain/index.ts';
-import { AVATAR_STYLES } from '../../../core/domain/index.ts';
+import type { Language, LearningMode, SrsPresetId, Theme } from '../../../core/domain/index.ts';
 import {
   useDataIo,
   useModal,
@@ -30,9 +21,8 @@ import {
   useTranslation,
   useWordLibrary,
 } from '../../../core/application/index.ts';
-import { generateRandomSeed } from '../../../shared/index.ts';
 import { Avatar } from '../../shell/Avatar.tsx';
-import { SettingsOptionModal } from './SettingsOptionModal.tsx';
+import { AvatarPickerModal, SettingsPickerModal } from './SettingsOptionModal.tsx';
 
 // Settings is the single-screen preferences page. It is grouped into
 // four sections — profile, learning, appearance, data — and each
@@ -69,112 +59,87 @@ export function Settings(): React.ReactNode {
   };
 
   const openSystemPicker = (): void => {
-    const options = (['default', 'aggressive', 'relaxed'] as const).map((id) => (
-      <button
-        key={id}
-        type="button"
-        className={`ob-option${settings.system === id ? ' selected' : ''}`}
-        onClick={() => update({ system: id })}
-      >
-        {id === 'default'
+    const sysOptions = (['default', 'aggressive', 'relaxed'] as const).map((id) => ({
+      id,
+      label:
+        id === 'default'
           ? t('ob_sys_default')
           : id === 'aggressive'
             ? t('ob_sys_aggressive')
-            : t('ob_sys_relaxed')}
-      </button>
-    ));
-    open({ title: t('select_system') }, <SettingsOptionModal>{options}</SettingsOptionModal>);
+            : t('ob_sys_relaxed'),
+    }));
+    open(
+      { title: t('select_system') },
+      <SettingsPickerModal
+        options={sysOptions}
+        settingsKey="system"
+        onSelect={(id) => update({ system: id })}
+      />,
+    );
   };
 
   const openGoalPicker = (): void => {
-    const options = [5, 10, 15, 20, 30, 50].map((goal) => (
-      <button
-        key={goal}
-        type="button"
-        className={`ob-option${settings.goal === goal ? ' selected' : ''}`}
-        onClick={() => update({ goal })}
-      >
-        {goal}
-      </button>
-    ));
-    open({ title: t('select_goal') }, <SettingsOptionModal>{options}</SettingsOptionModal>);
+    const goalOptions = [5, 10, 15, 20, 30, 50].map((goal) => ({
+      id: goal,
+      label: String(goal),
+    }));
+    open(
+      { title: t('select_goal') },
+      <SettingsPickerModal
+        options={goalOptions}
+        settingsKey="goal"
+        onSelect={(goal) => update({ goal })}
+      />,
+    );
   };
 
   const openModePicker = (): void => {
-    const options = (['en_to_tr', 'tr_to_en', 'mixed'] as const).map((id) => (
-      <button
-        key={id}
-        type="button"
-        className={`ob-option${settings.mode === id ? ' selected' : ''}`}
-        onClick={() => update({ mode: id })}
-      >
-        {modeLabel[id]}
-      </button>
-    ));
-    open({ title: t('select_mode') }, <SettingsOptionModal>{options}</SettingsOptionModal>);
+    const modeOptions = (['en_to_tr', 'tr_to_en', 'mixed'] as const).map((id) => ({
+      id,
+      label: modeLabel[id],
+    }));
+    open(
+      { title: t('select_mode') },
+      <SettingsPickerModal
+        options={modeOptions}
+        settingsKey="mode"
+        onSelect={(id) => update({ mode: id })}
+      />,
+    );
   };
 
   const openThemePicker = (): void => {
-    const options = (['light', 'dark', 'auto'] as const).map((id) => (
-      <button
-        key={id}
-        type="button"
-        className={`ob-option${settings.theme === id ? ' selected' : ''}`}
-        onClick={() => update({ theme: id })}
-      >
-        {themeLabel[id]}
-      </button>
-    ));
-    open({ title: t('select_theme') }, <SettingsOptionModal>{options}</SettingsOptionModal>);
+    const themeOptions = (['light', 'dark', 'auto'] as const).map((id) => ({
+      id,
+      label: themeLabel[id],
+    }));
+    open(
+      { title: t('select_theme') },
+      <SettingsPickerModal
+        options={themeOptions}
+        settingsKey="theme"
+        onSelect={(id) => update({ theme: id })}
+      />,
+    );
   };
 
   const openLangPicker = (): void => {
-    const options = (['tr', 'en'] as const).map((id) => (
-      <button
-        key={id}
-        type="button"
-        className={`ob-option${settings.lang === id ? ' selected' : ''}`}
-        onClick={() => update({ lang: id })}
-      >
-        {langLabel[id]}
-      </button>
-    ));
-    open({ title: t('select_lang') }, <SettingsOptionModal>{options}</SettingsOptionModal>);
+    const langOptions = (['tr', 'en'] as const).map((id) => ({
+      id,
+      label: langLabel[id],
+    }));
+    open(
+      { title: t('select_lang') },
+      <SettingsPickerModal
+        options={langOptions}
+        settingsKey="lang"
+        onSelect={(id) => update({ lang: id })}
+      />,
+    );
   };
 
   const openAvatarPicker = (): void => {
-    const options: ReactNode = (
-      <div className="avatar-picker">
-        <div className="avatar-picker-preview">
-          <Avatar
-            style={settings.profile.avatarStyle}
-            seed={settings.profile.avatarSeed}
-            size="xl"
-          />
-          <button
-            type="button"
-            className="btn-chip"
-            onClick={() => updateProfile({ avatarSeed: generateRandomSeed() })}
-          >
-            <Shuffle size={14} />
-            {t('avatar_shuffle')}
-          </button>
-        </div>
-        <div className="avatar-style-grid">
-          {AVATAR_STYLES.map((style: AvatarStyle) => (
-            <button
-              key={style}
-              type="button"
-              className={`avatar-style-item${settings.profile.avatarStyle === style ? ' selected' : ''}`}
-              onClick={() => updateProfile({ avatarStyle: style })}
-            >
-              <Avatar style={style} seed={settings.profile.avatarSeed} size="sm" />
-            </button>
-          ))}
-        </div>
-      </div>
-    );
-    open({ title: t('profile_avatar') }, options);
+    open({ title: t('profile_avatar') }, <AvatarPickerModal />);
   };
 
   const openNameEditor = (): void => {

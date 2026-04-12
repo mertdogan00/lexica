@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] - 2026-04-12
+
+### Fixed
+
+- Settings picker modals (learning mode, repetition system, daily goal, theme, language) now update the selected highlight immediately on tap
+- Avatar picker preview and selected style highlight now stay in sync when switching styles or shuffling
+
+### Changed
+
+- Extracted `SettingsPickerModal` and `AvatarPickerModal` components that read settings via hooks internally, replacing stale-closure inline JSX
+
 ## [1.0.1] - 2026-04-12
 
 ### Added
