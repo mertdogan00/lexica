@@ -1,8 +1,14 @@
-import { useMemo } from 'react';
+import { Suspense, useMemo, type ReactNode } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppProviders } from '../core/application/index.ts';
 import { AppShell } from '../presentation/index.ts';
-import { Dashboard, Words, Review, Settings } from '../presentation/index.ts';
+import {
+  LazyDashboard,
+  LazyReview,
+  LazySettings,
+  LazyWords,
+  LoadingFallback,
+} from '../presentation/index.ts';
 import { createContainer } from './container.ts';
 
 // App is the root React tree. It stands up the DI container exactly
@@ -11,7 +17,12 @@ import { createContainer } from './container.ts';
 // share AppShell via nested routing so the header, bottom nav, FAB,
 // modal and toast hosts stay mounted across navigations.
 
-export function App(): React.ReactNode {
+// Route-level Suspense wrapper to keep lazy screens consistent.
+const withFallback = (node: ReactNode): ReactNode => (
+  <Suspense fallback={<LoadingFallback />}>{node}</Suspense>
+);
+
+export function App(): ReactNode {
   const container = useMemo(() => createContainer(), []);
 
   return (
@@ -19,10 +30,10 @@ export function App(): React.ReactNode {
       <BrowserRouter>
         <Routes>
           <Route element={<AppShell />}>
-            <Route index element={<Dashboard />} />
-            <Route path="/words" element={<Words />} />
-            <Route path="/review" element={<Review />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route index element={withFallback(<LazyDashboard />)} />
+            <Route path="/words" element={withFallback(<LazyWords />)} />
+            <Route path="/review" element={withFallback(<LazyReview />)} />
+            <Route path="/settings" element={withFallback(<LazySettings />)} />
           </Route>
         </Routes>
       </BrowserRouter>

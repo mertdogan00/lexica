@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-04-12
+
+### Added
+
+- Route-level code splitting with React.lazy and Suspense fallback
+- Loading fallback component and styling for lazy page transitions
+- Browser language detection for default UI language on first load
+
+### Changed
+
+- Raised Vite chunk size warning limit to 1.5 MB
+- Organized lazy-load helpers under `presentation/pages/Lazy` and loading UI under `presentation/pages/Loading`
+
 ## [1.0.0] - 2026-04-12
 
 ### Added

@@ -8,6 +8,10 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  build: {
+    // Raise warning threshold since this app ships large icon bundles.
+    chunkSizeWarningLimit: 1500,
+  },
   server: {
     host: '0.0.0.0',
   },
